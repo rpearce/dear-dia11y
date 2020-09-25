@@ -1,0 +1,67 @@
+:root {
+  font-size: 62.5%;
+  box-sizing: border-box;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+html,
+body {
+  min-height: 100vh;
+}
+body {
+  font-kerning: normal;
+  -moz-font-feature-settings: "kern", "liga", "clig", "calt";
+  -ms-font-feature-settings: "kern", "liga", "clig", "calt";
+  -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
+  font-feature-settings: "kern", "liga", "clig", "calt";
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Courier New", Courier, monospace;
+}
+body.dark {
+  --blue: #61afef;
+  --gutter-grey: #4b5263;
+  --magenta: #c678dd;
+
+  --a-c: var(--magenta);
+  --a-c-a: var(--blue);
+  --g-c: var(--gutter-grey);
+
+  background-color: #1e2127;
+  color: #fff;
+}
+header,
+main {
+  margin: auto;
+  max-width: 120ch;
+}
+h1 {
+  font-size: 4.0rem;
+  line-height: 1.1;
+}
+h1 > a {
+  color: #fff;
+  text-decoration: none;
+}
+header small {
+  font-weight: bold;
+}
+header small,
+article {
+  font-size: 1.8rem;
+  line-height: 1.4;
+}
+article a {
+  color: var(--a-c);
+}
+article a:active,
+article a:hover,
+article a:focus {
+  color: var(--a-c-a);
+}

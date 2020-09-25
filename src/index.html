@@ -1,0 +1,47 @@
+---
+description: "Confessions of a programmer working on web accessibility"
+lang: "en"
+stylesheet: "default"
+title: "Dear Dia11y"
+---
+
+<header class="ma mw120ch">
+  <h1 class="fs40 lh11">Dear Dia11y…</h1>
+  <div class="fs18">
+    Confessions of a programmer working on web accessibility
+  </div>
+</header>
+<main>
+  <section class="ma mw120ch">
+    <h2 class="fs32 lh11">Entries</h2>
+    <ul class="lsn p0" role="list">
+    $for(posts)$
+      <li class="mb24 fs18" role="listitem">
+        <div class="mb5">
+          <a href=".$url$" class="a bsu tdn fs18">$title$</a>
+        </div>
+        <div>
+          <small>$date$</small>
+        </div>
+      </li>
+    $endfor$
+    </ul>
+  </section>
+</main>
+<footer class="ma mb24 mw120ch">
+  <h2 class="fs32 lh11">
+    If found, please return to…
+  </h2>
+
+  <div class="fs18 lh14">Robert W. Pearce</div>
+  <div>
+    <a class="a fs18 lh14" href="https://github.com/rpearce">
+      github.com/rpearce
+    </a>
+  </div>
+  <div>
+    <a class="a fs18 lh14" href="https://twitter.com/robertwpearce">
+      @RobertWPearce
+    </a>
+  </div>
+</footer>

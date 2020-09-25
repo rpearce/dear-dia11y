@@ -1,12 +1,12 @@
 ---
 author: "Robert W. Pearce"
+authorTwitter: "@RobertWPearce"
 description: "A programmer's first steps into a larger accessibility world"
 keywords: "accessibility, a11y, button reset, dear-dia11y"
+lang: "en"
+stylesheet: "article"
 title: "Hello, accessibility world!"
-updated: "2020-09-19T12:00:00Z"
 ---
-
-# Hello, accessibility world!
 
 Dear dia11y,
 
