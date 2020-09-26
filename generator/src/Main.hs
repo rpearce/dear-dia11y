@@ -20,11 +20,11 @@ import Text.Pandoc
 
 root :: String
 root =
-  "https://rpearce.github.io/hakyll-nix-template"
+  "https://dear-dia11y.com"
 
 siteName :: String
 siteName =
-  "My Site Name"
+  "Dear Dia11y"
 
 config :: Configuration
 config =
@@ -178,10 +178,10 @@ feedCompiler renderer =
 feedConfiguration :: FeedConfiguration
 feedConfiguration =
   FeedConfiguration
-    { feedTitle = "My Site",
-      feedDescription = "My Site Description",
-      feedAuthorName = "My Name",
-      feedAuthorEmail = "me@myemail.com",
+    { feedTitle = "Dear Dia11y",
+      feedDescription = "Confessions of a programmer working on web accessibility",
+      feedAuthorName = "Robert W. Pearce",
+      feedAuthorEmail = "me@robertwpearce.com",
       feedRoot = root
     }
 
