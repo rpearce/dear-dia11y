@@ -26,12 +26,23 @@ body {
 }
 body.dark {
   --blue: #61afef;
+  --comment-grey: #5c6370;
+  --cyan: #56b6c2;
   --gutter-grey: #4b5263;
   --magenta: #c678dd;
+  --offwhite: #abb2bf;
+  --yellow-light: #e5c07b;
+  --yellow-dark: #d19a66;
 
   --a-c: var(--magenta);
   --a-c-a: var(--blue);
   --g-c: var(--gutter-grey);
+  --c-a: var(--comment-grey);
+
+  --css-bu: var(--cyan);
+  --css-kw: var(--offwhite);
+  --css-dv: var(--yellow-dark);
+  --css-fu: var(--yellow-dark);
 
   background-color: #1e2127;
   color: #fff;
@@ -74,6 +85,33 @@ body.dark {
 .p0 { padding: 0; }
 .pl20 { padding-left: 2rem; }
 .tdn { text-decoration: none; }
+pre.sourceCode > code { counter-reset: source-line 0; }
+pre.sourceCode > code > span { counter-increment: source-line; }
+pre.sourceCode > code > span > a {
+  text-decoration: none;
+  box-shadow: none;
+}
+pre.sourceCode > code > span > a:first-child::before {
+  content: counter(source-line) "|";
+  position: relative;
+  left: -1em;
+  text-align: right;
+  vertical-align: baseline;
+  border: none;
+  display: inline-block;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 2.5em;
+  color: var(--c-a);
+}
+.css .bu /* BuiltIn */ { color: var(--css-bu); }
+.css .dv /* DecVal */ { color: var(--css-dv); }
+.css .fu /* Function */ { color: var(--css-fu); }
+.css .kw /* Keyword */ { color: var(--css-kw); }
 @media (min-width: 120ch) {
   .m880-mla { margin-left: auto; }
   .m880-mra { margin-right: auto; }
