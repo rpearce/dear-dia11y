@@ -45,6 +45,10 @@ body.dark {
 .a:focus {
   color: var(--a-c-a);
 }
+.am a {
+  text-decoration: none;
+  box-shadow: 0 0.1rem 0 0 currentColor;
+}
 .bl5s { border-left: 5px solid; }
 .blcg { border-left-color: var(--g-c); }
 .bsu { box-shadow: 0 0.1rem 0 0 currentColor; }
