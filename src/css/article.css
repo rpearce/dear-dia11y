@@ -36,9 +36,11 @@ body.dark {
   background-color: #1e2127;
   color: #fff;
 }
+.m0 { margin: 0; }
 header,
 main {
-  margin: auto;
+  margin-left: 2rem;
+  margin-right: 2rem;
   max-width: 120ch;
 }
 h1 {
@@ -64,4 +66,11 @@ article a:active,
 article a:hover,
 article a:focus {
   color: var(--a-c-a);
+}
+@media (min-width: 120ch) {
+  header,
+  main {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

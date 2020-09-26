@@ -55,7 +55,13 @@ body.dark {
 .mb5 { margin-bottom: 0.5rem; }
 .mb24 { margin-bottom: 2.4rem; }
 .ml10 { margin-left: 1rem; }
+.ml20 { margin-left: 2rem; }
+.mr20 { margin-right: 2rem; }
 .mw120ch { max-width: 120ch; }
 .p0 { padding: 0; }
 .pl20 { padding-left: 2rem; }
 .tdn { text-decoration: none; }
+@media (min-width: 120ch) {
+  .m880-mla { margin-left: auto; }
+  .m880-mra { margin-right: auto; }
+}
