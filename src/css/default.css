@@ -15,10 +15,6 @@ body {
 }
 body {
   font-kerning: normal;
-  -moz-font-feature-settings: "kern", "liga", "clig", "calt";
-  -ms-font-feature-settings: "kern", "liga", "clig", "calt";
-  -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
-  font-feature-settings: "kern", "liga", "clig", "calt";
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -28,11 +24,14 @@ body.dark {
   --blue: #61afef;
   --comment-grey: #5c6370;
   --cyan: #56b6c2;
+  --green: #98c379;
   --gutter-grey: #4b5263;
   --magenta: #c678dd;
   --offwhite: #abb2bf;
-  --yellow-light: #e5c07b;
+  --red-dark: #be5046;
+  --red-light: #e06c75;
   --yellow-dark: #d19a66;
+  --yellow-light: #e5c07b;
 
   --a-c: var(--magenta);
   --a-c-a: var(--blue);
@@ -44,6 +43,9 @@ body.dark {
   --css-kw: var(--offwhite);
   --css-dv: var(--yellow-dark);
   --css-fu: var(--yellow-dark);
+  --html-kw: var(--red-light);
+  --html-ot: var(--yellow-dark);
+  --html-st: var(--green);
 
   background-color: #1e2127;
   color: #fff;
@@ -109,11 +111,17 @@ pre.sourceCode > code > span > a:first-child::before {
   width: 2.5em;
   color: var(--c-a);
 }
-.css { color: var(--css-default); }
+.css,
+.html {
+  color: var(--css-default);
+}
 .css .bu /* BuiltIn */ { color: var(--css-bu); }
 .css .dv /* DecVal */ { color: var(--css-dv); }
 .css .fu /* Function */ { color: var(--css-fu); }
 .css .kw /* Keyword */ { color: var(--css-kw); }
+.html .kw /* Keyword */ { color: var(--html-kw); }
+.html .ot /* Other */ { color: var(--html-ot); }
+.html .st  /* String */ { color: var(--html-st); }
 @media (min-width: 120ch) {
   .m880-mla { margin-left: auto; }
   .m880-mra { margin-right: auto; }
