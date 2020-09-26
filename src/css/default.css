@@ -39,6 +39,7 @@ body.dark {
   --g-c: var(--gutter-grey);
   --c-a: var(--comment-grey);
 
+  --css-default: var(--offwhite);
   --css-bu: var(--cyan);
   --css-kw: var(--offwhite);
   --css-dv: var(--yellow-dark);
@@ -108,6 +109,7 @@ pre.sourceCode > code > span > a:first-child::before {
   width: 2.5em;
   color: var(--c-a);
 }
+.css { color: var(--css-default); }
 .css .bu /* BuiltIn */ { color: var(--css-bu); }
 .css .dv /* DecVal */ { color: var(--css-dv); }
 .css .fu /* Function */ { color: var(--css-fu); }
