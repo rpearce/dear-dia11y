@@ -18,7 +18,7 @@ title: "Dear Dia11y"
     $for(posts)$
       <li class="mb24 fs18" role="listitem">
         <div class="mb5">
-          <a href=".$url$" class="a bsu tdn fs18">$title$</a>
+          <a class="a bsu tdn fs18" href=".$url$">$title$</a>
         </div>
         <div>
           <small>$date$</small>
@@ -28,20 +28,32 @@ title: "Dear Dia11y"
     </ul>
   </section>
 </main>
-<footer class="ml20 mr20 m880-mla m880-mra mb24 mw120ch">
-  <h2 class="fs32 lh11">
-    If found, please return to…
-  </h2>
-
-  <div class="fs18 lh14">Robert W. Pearce</div>
-  <div>
-    <a class="a fs18 lh14" href="https://github.com/rpearce">
-      github.com/rpearce
-    </a>
-  </div>
-  <div>
-    <a class="a fs18 lh14" href="https://twitter.com/robertwpearce">
-      @RobertWPearce
-    </a>
-  </div>
+<footer class="mb24">
+  <section class="ml20 mr20 m880-mla m880-mra mw120ch">
+    <h2 class="fs32 lh11">Read along</h2>
+    <ul class="lsn mb24 p0" role="list">
+      <li class="di fs18" role="listitem">
+        <a class="a bsu tdn fs18" href="./rss.xml">RSS.xml</a>
+      </li>
+      <li class="di fs18" role="listitem">
+        <a class="a bsu tdn fs18" href="./atom.xml">Atom.xml</a>
+      </li>
+    </ul>
+  </section>
+  <section class="ml20 mr20 m880-mla m880-mra mw120ch">
+    <h2 class="fs32 lh11">
+      If found, please return to…
+    </h2>
+    <div class="fs18 lh14">Robert W. Pearce</div>
+    <div>
+      <a class="a fs18 lh14" href="https://github.com/rpearce">
+        github.com/rpearce
+      </a>
+    </div>
+    <div>
+      <a class="a fs18 lh14" href="https://twitter.com/robertwpearce">
+        @RobertWPearce
+      </a>
+    </div>
+  </section>
 </footer>

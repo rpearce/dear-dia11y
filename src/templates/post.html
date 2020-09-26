@@ -1,12 +1,50 @@
-<header>
-  <h1><a href=".$url$">$title$</a></h1>
+<header class="ml20 mr20 mw120ch m880-mla m880-mra">
+  <h1 class="fs40 lh11">
+    <a class="a bsu tdn" href=".$url$">$title$</a>
+  </h1>
   <div>
-    <small>$date$</small>
+    <small class="fwb fs18">$date$</small>
     $if(updated)$
-    <small>(updated: $updated$)</small>
+    <small class="fwb lh14">(updated: $updated$)</small>
     $endif$
   </div>
 </header>
-<main>
-  <article>$body$</article>
+<main class="am ml20 mr20 m880-mla m880-mra mw120ch">
+  <div class="fs18 lh14">
+    $body$
+  </div>
 </main>
+<footer class="mb24">
+  <section class="ml20 mr20 m880-mla m880-mra mw120ch">
+    <h2 class="fs32 lh11">Read along</h2>
+    <nav>
+      <ul class="lsn mb24 p0" role="list">
+        <li class="di fs18" role="listitem">
+          <a class="a bsu tdn fs18" href="./index.html">Home</a>
+        </li>
+        <li class="di fs18" role="listitem">
+          <a class="a bsu tdn fs18" href="./rss.xml">RSS.xml</a>
+        </li>
+        <li class="di fs18" role="listitem">
+          <a class="a bsu tdn fs18" href="./atom.xml">Atom.xml</a>
+        </li>
+      </ul>
+    </nav>
+  </section>
+  <section class="ml20 mr20 m880-mla m880-mra mw120ch">
+    <h2 class="fs32 lh11">
+      If found, please return to…
+    </h2>
+    <div class="fs18 lh14">Robert W. Pearce</div>
+    <div>
+      <a class="a fs18 lh14" href="https://github.com/rpearce">
+        github.com/rpearce
+      </a>
+    </div>
+    <div>
+      <a class="a fs18 lh14" href="https://twitter.com/robertwpearce">
+        @RobertWPearce
+      </a>
+    </div>
+  </section>
+</footer>
