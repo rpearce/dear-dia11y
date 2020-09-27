@@ -21,11 +21,12 @@ body {
   font-family: "Courier New", Courier, monospace;
 }
 body.dark {
+  --black: #282c34;
   --blue: #61afef;
-  --comment-grey: #5c6370;
   --cyan: #56b6c2;
   --green: #98c379;
-  --gutter-grey: #4b5263;
+  --grey-comment: #5c6370;
+  --grey-gutter: #4b5263;
   --magenta: #c678dd;
   --offwhite: #abb2bf;
   --red-dark: #be5046;
@@ -33,16 +34,16 @@ body.dark {
   --yellow-dark: #d19a66;
   --yellow-light: #e5c07b;
 
-  --a-c: var(--magenta);
   --a-c-a: var(--blue);
-  --g-c: var(--gutter-grey);
-  --c-a: var(--comment-grey);
+  --a-c: var(--magenta);
+  --c-a: var(--grey-comment);
+  --g-c: var(--grey-gutter);
 
-  --css-default: var(--offwhite);
   --css-bu: var(--cyan);
-  --css-kw: var(--offwhite);
+  --css-default: var(--offwhite);
   --css-dv: var(--yellow-dark);
   --css-fu: var(--yellow-dark);
+  --css-kw: var(--offwhite);
   --html-kw: var(--red-light);
   --html-ot: var(--yellow-dark);
   --html-st: var(--green);
