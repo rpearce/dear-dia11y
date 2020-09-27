@@ -103,7 +103,7 @@ pre.sourceCode > code > span > a {
 pre.sourceCode > code > span > a:first-child::before {
   content: counter(source-line) "|";
   position: relative;
-  left: -1em;
+  left: -2ch;
   text-align: right;
   vertical-align: baseline;
   border: none;
@@ -114,7 +114,7 @@ pre.sourceCode > code > span > a:first-child::before {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  width: 2.5em;
+  width: 5ch;
   color: var(--c-a);
 }
 .css,
