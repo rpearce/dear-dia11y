@@ -2,7 +2,7 @@
 author: "Robert W. Pearce"
 authorGithub: "rpearce"
 authorTwitter: "RobertWPearce"
-description: ""
+description: "Resolving an image-with-SVG-source issue in Safari using VoiceOver"
 keywords: "SVG, VoiceOver, img src, accessibility, a11y, dear-dia11y"
 lang: "en"
 stylesheet: "default"
@@ -57,6 +57,7 @@ alternative text was being read along with the innards of SVG sources (even
 `<text>` elements!).
 
 Here are some nicely documented test cases of the issue:
+
 * http://pauljadam.com/demos/svg-role-img.html
 * http://a11yideas.com/testcode/mwp/iOSsvg.html
 
