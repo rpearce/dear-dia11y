@@ -28,7 +28,9 @@ and `<figcaption>`s. For a refresher, here's
     alt="Elephant at sunset"
     src="/media/cc0-images/elephant-660-480.jpg"
   />
-  <figcaption>An elephant at sunset</figcaption>
+  <figcaption>
+    An elephant at sunset
+  </figcaption>
 </figure>
 ```
 
@@ -44,7 +46,9 @@ Here's what our example was structured like:
     src="/media/cc0-images/elephant-660-480.jpg"
   />
   <div>
-    <figcaption>An elephant at sunset</figcaption>
+    <figcaption>
+      An elephant at sunset
+    </figcaption>
   </div>
 </figure>
 ```
