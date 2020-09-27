@@ -6,7 +6,7 @@ description: ""
 keywords: "SVG, VoiceOver, img src, accessibility, a11y, dear-dia11y"
 lang: "en"
 stylesheet: "default"
-title: "Image with SVG source VoiceOver Bug"
+title: "Image with SVG source VoiceOver bug"
 ---
 
 Dear dia11y,
@@ -17,7 +17,11 @@ every `<g>` (group) element by narrating the word "image". Here's what the HTML
 essentially was:
 
 ```html
-<img alt="" class="foo" src="path/to/file.svg" />
+<img
+  alt=""
+  class="foo"
+  src="path/to/file.svg"
+/>
 ```
 
 The `alt=""` should have alerted the screen reader that this was a [decorative
@@ -37,7 +41,12 @@ document and start reading things__.
 The fix?
 
 ```html
-<img alt="" class="foo" role="img" src="path/to/file.svg" />
+<img
+  alt=""
+  class="foo"
+  role="img"
+  src="path/to/file.svg"
+/>
 ```
 
 That's it! HTML and a11y linters will complain about the repetitive `role`, but
