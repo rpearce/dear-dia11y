@@ -89,11 +89,13 @@ body.dark {
 .p0 { padding: 0; }
 .pl20 { padding-left: 2rem; }
 .tdn { text-decoration: none; }
+.wrbw { word-wrap: break-word; }
 pre.sourceCode { min-width: 100%; overflow: auto; }
 pre.sourceCode > code {
   counter-reset: source-line 0;
   -webkit-overflow-scrolling: touch;
   overflow: auto;
+  word-wrap: normal;
 }
 pre.sourceCode > code > span { counter-increment: source-line; }
 pre.sourceCode > code > span > a {
