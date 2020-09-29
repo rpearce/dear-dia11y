@@ -39,11 +39,14 @@ body.dark {
   --c-a: var(--grey-comment);
   --g-c: var(--grey-gutter);
 
+  --css-at: var(--magenta);
   --css-bu: var(--cyan);
   --css-default: var(--offwhite);
+  --css-dt: var(--yellow-dark);
   --css-dv: var(--yellow-dark);
-  --css-fu: var(--yellow-dark);
+  --css-fu: var(--cyan);
   --css-kw: var(--offwhite);
+  --css-in: var(--blue);
   --html-kw: var(--red-light);
   --html-ot: var(--yellow-dark);
   --html-st: var(--green);
@@ -123,10 +126,13 @@ pre.sourceCode > code > span > a:first-child::before {
 .html {
   color: var(--css-default);
 }
+.css .at /* Attribute */ { color: var(--css-at); }
 .css .bu /* BuiltIn */ { color: var(--css-bu); }
+.css .dt /* DataType */ { color: var(--css-dt); }
 .css .dv /* DecVal */ { color: var(--css-dv); }
 .css .fu /* Function */ { color: var(--css-fu); }
 .css .kw /* Keyword */ { color: var(--css-kw); }
+.css .in /* Information */ { color: var(--css-in); }
 .html .kw /* Keyword */ { color: var(--html-kw); }
 .html .ot /* Other */ { color: var(--html-ot); }
 .html .st  /* String */ { color: var(--html-st); }

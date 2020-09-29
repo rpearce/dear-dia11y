@@ -7,6 +7,8 @@ authorTwitter: "RobertWPearce"
 description: "A programmer's first steps into a larger accessibility world"
 keywords: "button reset, css, accessibility, a11y, dear-dia11y"
 lang: "en"
+scriptSrc:
+styleshsheet:
 title: "Hello, accessibility world!"
 ---
 
