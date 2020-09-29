@@ -1,6 +1,8 @@
 ---
 author: "Robert W. Pearce"
 authorGithub: "rpearce"
+authorSponsorLink: "https://github.com/sponsors/rpearce"
+authorSponsorText: "Buy me a coffee"
 authorTwitter: "RobertWPearce"
 description: "Resolving an image-with-SVG-source issue in Safari using VoiceOver"
 keywords: "SVG, VoiceOver, img src, accessibility, a11y, dear-dia11y"

@@ -1,6 +1,8 @@
 ---
 author: "Robert W. Pearce"
 authorGithub: "rpearce"
+authorSponsorLink: "https://github.com/sponsors/rpearce"
+authorSponsorText: "Buy me a coffee"
 authorTwitter: "RobertWPearce"
 description: "A programmer's first steps into a larger accessibility world"
 keywords: "button reset, css, accessibility, a11y, dear-dia11y"

@@ -16,6 +16,38 @@
 </main>
 <footer class="mb24">
   <section class="ml20 mr20 m880-mla m880-mra mw120ch">
+    <h2 class="fs32 lh11">
+      If found, please return to…
+    </h2>
+    <div class="fs18 lh14">$author$</div>
+    $if(authorSponsorLink)$
+    <div>
+      <a class="a bsu fs18 lh14 tdn" href="$authorSponsorLink$">
+        $authorSponsorText$
+      </a>
+    </div>
+    $endif$
+    $if(authorGithub)$
+    <div>
+      <a class="a bsu fs18 lh14 tdn" href="https://github.com/$authorGithub$">
+        github.com/$authorGithub$
+      </a>
+    </div>
+    $endif$
+    $if(authorGitlab)$
+    <div>
+      <a class="a bsu fs18 lh14 tdn" href="https://github.com/$authorGitlab$">
+        gitlab.com/$authorGitlab$
+      </a>
+    </div>
+    $endif$
+    <div>
+      <a class="a bsu fs18 lh14 tdn" href="https://twitter.com/$authorTwitter$">
+        @$authorTwitter$
+      </a>
+    </div>
+  </section>
+  <section class="ml20 mr20 m880-mla m880-mra mw120ch">
     <h2 class="fs32 lh11">Read along</h2>
     <nav>
       <ul class="lsn mb24 p0" role="list">
@@ -33,21 +65,5 @@
         </li>
       </ul>
     </nav>
-  </section>
-  <section class="ml20 mr20 m880-mla m880-mra mw120ch">
-    <h2 class="fs32 lh11">
-      If found, please return to…
-    </h2>
-    <div class="fs18 lh14">$author$</div>
-    <div>
-      <a class="a bsu fs18 lh14 tdn" href="https://github.com/$authorGithub$">
-        github.com/$authorGithub$
-      </a>
-    </div>
-    <div>
-      <a class="a bsu fs18 lh14 tdn" href="https://twitter.com/$authorTwitter$">
-        @$authorTwitter$
-      </a>
-    </div>
   </section>
 </footer>
