@@ -7,7 +7,6 @@ authorTwitter: "RobertWPearce"
 description: "Resolving an image-with-SVG-source issue in Safari using VoiceOver"
 keywords: "SVG, VoiceOver, img src, accessibility, a11y, dear-dia11y"
 lang: "en"
-stylesheet: "default"
 title: "Image with SVG source VoiceOver bug"
 ---
 

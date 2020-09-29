@@ -7,7 +7,6 @@ authorTwitter: "RobertWPearce"
 description: "I need to use role & aria-labelledby with figure elements in order for all screen readers across all browsers to recognize the figure and figcaption correctly."
 keywords: "figure, figcaption, JAWS, NVDA, VoiceOver, accessibility, a11y, dear-dia11y"
 lang: "en"
-stylesheet: "default"
 title: "Figure & Figcaption: Supporting IE11, JAWS, NVDA, & VO"
 ---
 
