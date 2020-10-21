@@ -4,7 +4,7 @@ authorGithub: "rpearce"
 authorSponsorLink: "https://github.com/sponsors/rpearce"
 authorSponsorText: "Buy me a coffee"
 authorTwitter: "RobertWPearce"
-description: "How to use decorative and functional images for better image accessibility"
+description: "How to leverage decorative and functional images for clearer accessibility"
 keywords: "decorative image, functional image, aria-hidden, alt text, accessibility, a11y, dear-dia11y"
 lang: "en"
 scriptSrc:
