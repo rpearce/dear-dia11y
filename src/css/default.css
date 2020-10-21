@@ -36,6 +36,7 @@ body.dark {
 
   --a-c-a: var(--blue);
   --a-c: var(--magenta);
+  --b-bg: var(--magenta);
   --c-a: var(--grey-comment);
   --g-c: var(--grey-gutter);
 
@@ -47,6 +48,7 @@ body.dark {
   --css-fu: var(--cyan);
   --css-kw: var(--offwhite);
   --css-in: var(--blue);
+  --html-co: var(--grey-comment);
   --html-kw: var(--red-light);
   --html-ot: var(--yellow-dark);
   --html-st: var(--green);
@@ -78,13 +80,14 @@ body.dark {
 .fs32 { font-size: 3.2rem; }
 .fs40 { font-size: 4rem; }
 .fwb { font-weight: bold; }
+.ha { hyphens: auto; }
 .lh11 { line-height: 1.1; }
 .lh14 { line-height: 1.4; }
 .lsn { list-style: none; }
 .m0 { margin: 0; }
 .ma { margin: auto; }
-.mb5 { margin-bottom: 0.5rem; }
 .mb24 { margin-bottom: 2.4rem; }
+.mb5 { margin-bottom: 0.5rem; }
 .ml10 { margin-left: 1rem; }
 .ml20 { margin-left: 2rem; }
 .mr20 { margin-right: 2rem; }
@@ -93,6 +96,7 @@ body.dark {
 .pl20 { padding-left: 2rem; }
 .tdn { text-decoration: none; }
 .wrbw { word-wrap: break-word; }
+
 pre.sourceCode { min-width: 100%; overflow: auto; }
 pre.sourceCode > code {
   counter-reset: source-line 0;
@@ -133,6 +137,7 @@ pre.sourceCode > code > span > a:first-child::before {
 .css .fu /* Function */ { color: var(--css-fu); }
 .css .kw /* Keyword */ { color: var(--css-kw); }
 .css .in /* Information */ { color: var(--css-in); }
+.html .co /* Comment */ { color: var(--html-co); }
 .html .kw /* Keyword */ { color: var(--html-kw); }
 .html .ot /* Other */ { color: var(--html-ot); }
 .html .st  /* String */ { color: var(--html-st); }
