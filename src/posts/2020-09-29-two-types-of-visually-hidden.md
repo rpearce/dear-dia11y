@@ -4,7 +4,7 @@ authorGithub: "rpearce"
 authorSponsorLink: "https://github.com/sponsors/rpearce"
 authorSponsorText: "Buy me a coffee"
 authorTwitter: "RobertWPearce"
-description: "How to future-proof content intended for screen readers and other assistive devices"
+desc: "How to future-proof content intended for screen readers and other assistive devices"
 keywords: "visually-hidden, css, hidden, accessibility, a11y, dear-dia11y"
 lang: "en"
 scriptSrc:
