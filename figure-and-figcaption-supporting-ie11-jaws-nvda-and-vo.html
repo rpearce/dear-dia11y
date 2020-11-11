@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Figure & Figcaption: Supporting IE11, JAWS, NVDA, & VO</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="I need to use role & aria-labelledby with figure elements in order for all screen readers across all browsers to recognize the figure and figcaption correctly.">
+    
+    <meta name="author" content="Robert W. Pearce">
+    
+    
+    <meta name="keywords" content="figure, figcaption, JAWS, NVDA, VoiceOver, accessibility, a11y, dear-dia11y">
+    
+    <meta name="google-site-verification" content="iwHC5sNm754gGlV0YuXSPOnSC1kJDcTDTMSthILfAL0" />
+
+    <meta property="og:site_name" content="Dear Dia11y">
+    <meta property="og:title" content="Figure & Figcaption: Supporting IE11, JAWS, NVDA, & VO">
+    <meta property="og:url" content="https://dear-dia11y.com/figure-and-figcaption-supporting-ie11-jaws-nvda-and-vo.html">
+    <meta property="og:description" content="I need to use role & aria-labelledby with figure elements in order for all screen readers across all browsers to recognize the figure and figcaption correctly.">
+    
+    
+    <meta property="og:type" content="article">
+    
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:site" content="Dear Dia11y">
+    <meta property="twitter:title" content="Figure & Figcaption: Supporting IE11, JAWS, NVDA, & VO">
+    <meta property="twitter:description" content="I need to use role & aria-labelledby with figure elements in order for all screen readers across all browsers to recognize the figure and figcaption correctly.">
+    
+    
+    <meta property="twitter:creator" content="RobertWPearce">
+    
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>♿️</text></svg>">
+    <link rel="canonical" href="https://dear-dia11y.com/figure-and-figcaption-supporting-ie11-jaws-nvda-and-vo.html">
+    <link rel="stylesheet" href="./css/default.css" />
+    
+  </head>
+  <body class="dark ha m0 wrbw">
+    <header class="ml20 mr20 mw120ch m880-mla m880-mra">
+  <h1 class="fs40 lh14">
+    <a aria-current="page" class="a bsu tdn" href="./figure-and-figcaption-supporting-ie11-jaws-nvda-and-vo.html">Figure & Figcaption: Supporting IE11, JAWS, NVDA, & VO</a>
+  </h1>
+  <div>
+    <small class="fwb fs18">2020-09-27</small>
+    
+  </div>
+</header>
+<main class="am ml20 mr20 m880-mla m880-mra mw120ch">
+  <div class="fs18 lh14">
+    <p>Dear dia11y,</p>
+<p>At work, I must support IE11 along with all the other major browsers, so that means I need to support <a href="https://www.freedomscientific.com/products/software/jaws/">JAWS</a> &amp; <a href="https://www.nvaccess.org/download/">NVDA</a> across these browsers on Windows in addition to VoiceOver on macOS &amp; iOS Safari (I don’t do much in the Android world at the moment).</p>
+<p>About 1-2 months ago, I did a lot of work fixing up issues around <code>&lt;figure&gt;</code>s and <code>&lt;figcaption&gt;</code>s. For a refresher, here’s <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figcaption">the example that MDN uses</a>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">&lt;figure&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  <span class="kw">&lt;img</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="ot">    alt=</span><span class="st">&quot;Elephant at sunset&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="ot">    src=</span><span class="st">&quot;/media/cc0-images/elephant-660-480.jpg&quot;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>  <span class="kw">/&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>  <span class="kw">&lt;figcaption&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>    An elephant at sunset</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>  <span class="kw">&lt;/figcaption&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="kw">&lt;/figure&gt;</span></span></code></pre></div>
+<p>This is straightforward, but JAWS + IE11 didn’t quite recognize this as a figure, and we had issues with the caption because we had a <code>&lt;div&gt;</code> as the parent of the <code>&lt;figcaption&gt;</code>. NVDA + Firefox didn’t like this setup, either. Here’s what our example was structured like:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">&lt;figure&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>  <span class="kw">&lt;img</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="ot">    alt=</span><span class="st">&quot;Elephant at sunset&quot;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="ot">    src=</span><span class="st">&quot;/media/cc0-images/elephant-660-480.jpg&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>  <span class="kw">/&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>  <span class="kw">&lt;div&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>    <span class="kw">&lt;figcaption&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>      An elephant at sunset</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>    <span class="kw">&lt;/figcaption&gt;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>  <span class="kw">&lt;/div&gt;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="kw">&lt;/figure&gt;</span></span></code></pre></div>
+<p>After going back and forth with different combinations of elements and attributes, here’s what was settled on to make this work across all these browsers and screen readers:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">&lt;figure</span><span class="ot"> aria-labelledby=</span><span class="st">&quot;caption-id&quot;</span><span class="ot"> role=</span><span class="st">&quot;figure&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>  <span class="kw">&lt;img</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="ot">    alt=</span><span class="st">&quot;Elephant at sunset&quot;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="ot">    src=</span><span class="st">&quot;/media/cc0-images/elephant-660-480.jpg&quot;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>  <span class="kw">/&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>  <span class="kw">&lt;figcaption</span><span class="ot"> id=</span><span class="st">&quot;caption-id&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>    An elephant at sunset</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>  <span class="kw">&lt;/figcaption&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="kw">&lt;/figure&gt;</span></span></code></pre></div>
+<p>Adding <code>role="figure"</code> to the <code>&lt;figure&gt;</code>, explicitly stating that it was labelled by the <code>&lt;figcaption&gt;</code>, and placing <code>&lt;figcaption&gt;</code> as an immediate child of <code>&lt;figure&gt;</code> resolved all our issues.</p>
+<p>This was a helpful table of related compatibility: <a href="https://www.powermapper.com/tests/screen-readers/labelling/img-figcaption/" class="uri">https://www.powermapper.com/tests/screen-readers/labelling/img-figcaption/</a></p>
+<p>Yours,<br /> Robert W. Pearce</p>
+  </div>
+</main>
+<footer class="mb24">
+  <section class="ml20 mr20 m880-mla m880-mra mw120ch">
+    <h2 class="fs32 lh11">
+      If found, please return to…
+    </h2>
+    <div class="fs18 lh14">Robert W. Pearce</div>
+    
+    <div>
+      <a class="a bsu fs18 lh14 tdn" href="https://github.com/sponsors/rpearce">
+        Buy me a coffee
+      </a>
+    </div>
+    
+    
+    <div>
+      <a class="a bsu fs18 lh14 tdn" href="https://github.com/rpearce">
+        github.com/rpearce
+      </a>
+    </div>
+    
+    
+    <div>
+      <a class="a bsu fs18 lh14 tdn" href="https://twitter.com/RobertWPearce">
+        @RobertWPearce
+      </a>
+    </div>
+  </section>
+  <section class="ml20 mr20 m880-mla m880-mra mw120ch">
+    <h2 class="fs32 lh11">Read along</h2>
+    <nav>
+      <ul class="lsn mb24 p0" role="list">
+        <li class="di fs18" role="listitem">
+          <a class="a bsu fs18 lh14 tdn" href="./index.html">Home</a>
+        </li>
+        <li class="di fs18" role="listitem">
+          <a class="a bsu fs18 lh14 tdn" href="./rss.xml">RSS Feed</a>
+        </li>
+        <li class="di fs18" role="listitem">
+          <a class="a bsu fs18 lh14 tdn" href="./atom.xml">Atom Feed</a>
+        </li>
+        <li class="di fs18" role="listitem">
+          <a class="a bsu fs18 lh14 tdn" href="./sitemap.xml">Sitemap</a>
+        </li>
+      </ul>
+    </nav>
+  </section>
+</footer>
+
+
+    
+  </body>
+</html>

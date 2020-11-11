@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Future-proof two types of visually hidden content</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="How to future-proof content intended for screen readers and other assistive devices">
+    
+    <meta name="author" content="Robert W. Pearce">
+    
+    
+    <meta name="keywords" content="visually-hidden, css, hidden, accessibility, a11y, dear-dia11y">
+    
+    <meta name="google-site-verification" content="iwHC5sNm754gGlV0YuXSPOnSC1kJDcTDTMSthILfAL0" />
+
+    <meta property="og:site_name" content="Dear Dia11y">
+    <meta property="og:title" content="Future-proof two types of visually hidden content">
+    <meta property="og:url" content="https://dear-dia11y.com/future-proof-two-types-of-visually-hidden-content.html">
+    <meta property="og:description" content="How to future-proof content intended for screen readers and other assistive devices">
+    
+    
+    <meta property="og:type" content="article">
+    
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:site" content="Dear Dia11y">
+    <meta property="twitter:title" content="Future-proof two types of visually hidden content">
+    <meta property="twitter:description" content="How to future-proof content intended for screen readers and other assistive devices">
+    
+    
+    <meta property="twitter:creator" content="RobertWPearce">
+    
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>♿️</text></svg>">
+    <link rel="canonical" href="https://dear-dia11y.com/future-proof-two-types-of-visually-hidden-content.html">
+    <link rel="stylesheet" href="./css/default.css" />
+    
+  </head>
+  <body class="dark ha m0 wrbw">
+    <header class="ml20 mr20 mw120ch m880-mla m880-mra">
+  <h1 class="fs40 lh14">
+    <a aria-current="page" class="a bsu tdn" href="./future-proof-two-types-of-visually-hidden-content.html">Future-proof two types of visually hidden content</a>
+  </h1>
+  <div>
+    <small class="fwb fs18">2020-09-29</small>
+    
+  </div>
+</header>
+<main class="am ml20 mr20 m880-mla m880-mra mw120ch">
+  <div class="fs18 lh14">
+    <p>Dear dia11y,</p>
+<p>I would prefer to not hide content from anyone, but there are times when I need to provide extra context and functionality when a design is not inclusive enough.</p>
+<p>The <a href="https://www.a11yproject.com/posts/2013-01-11-how-to-hide-content/"><code>.visually-hidden</code> “clip pattern” from The A11y Project</a> is excellent for hiding content that is intended for screen reader users, and it can be leveraged to provide interactive elements, like <code>&lt;button&gt;</code>s, that reveal themselves on focus for screen reader, keyboard, and other assistive device users alike. Here’s what that website’s recommendation is:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">.visually-hidden</span><span class="in">:not(</span>:focus<span class="in">):not(</span>:active<span class="in">)</span> {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  <span class="kw">clip</span>: <span class="fu">rect(</span><span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>  <span class="kw">clip-path</span>: <span class="fu">inset(</span><span class="dv">50</span><span class="dt">%</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>  <span class="kw">height</span>: <span class="dv">1</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>  <span class="kw">overflow</span>: <span class="dv">hidden</span><span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>  <span class="kw">position</span>: <span class="dv">absolute</span><span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>  <span class="kw">white-space</span>: <span class="dv">nowrap</span><span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>  <span class="kw">width</span>: <span class="dv">1</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>}</span></code></pre></div>
+<p>For most use cases, this is great. But my work in large codebases has shown me that if I want this to not take up any space, I need to get bossy and guard against future changes, as well.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="fu">.visually-hidden</span><span class="in">:not(</span>:focus<span class="in">):not(</span>:active<span class="in">)</span> {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>  <span class="kw">border</span>: <span class="dv">none</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>  <span class="kw">clip-path</span>: <span class="fu">inset(</span><span class="dv">50</span><span class="dt">%</span><span class="fu">)</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>  <span class="kw">clip</span>: <span class="fu">rect(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="fu">)</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>  <span class="kw">height</span>: <span class="dv">1</span><span class="dt">px</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>  <span class="kw">margin</span>: <span class="dv">0</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>  <span class="kw">overflow</span>: <span class="dv">hidden</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>  <span class="kw">padding</span>: <span class="dv">0</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>  <span class="kw">position</span>: <span class="dv">absolute</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>  <span class="kw">white-space</span>: <span class="dv">nowrap</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>  <span class="kw">width</span>: <span class="dv">1</span><span class="dt">px</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>}</span></code></pre></div>
+<p>While most things I do in my life aren’t important to anyone but me, getting visually hidden content right is <em>very</em> <code>!important</code>.</p>
+<p>With these additions we can ensure that we don’t break any existing designs.</p>
+<p>However, what if we transition from one page / view to another and need to call <code>element.focus()</code> on a visually hidden element in order to manage focus context? We might have something like this:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">&lt;h1</span><span class="ot"> class=</span><span class="st">&quot;visually-hidden&quot;</span><span class="ot"> tabindex=</span><span class="st">&quot;-1&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>  A necessary hidden h1 for whatever reason</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">&lt;/h1&gt;</span></span></code></pre></div>
+<p>If we call <code>.focus()</code> on that <code>&lt;h1&gt;</code>, the <code>:not(:focus)</code> part of the <code>.visually-hidden</code> definition will cause it to be <em>not</em> hidden!</p>
+<p>The <code>.visually-hidden</code> class is intended to be a catch-all to also account for links and buttons, and we definitely want to leverage that, but there are times where we <em>know</em> we will never want it to be focused, so we can be explicit about doing so by having an additional class, <code>.visually-hidden-always</code>, and reuse our code via a grouped selector.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="fu">.visually-hidden</span><span class="in">:not(</span>:focus<span class="in">):not(</span>:active<span class="in">)</span><span class="op">,</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="fu">.visually-hidden-always</span> {</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>  <span class="kw">border</span>: <span class="dv">none</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>  <span class="kw">clip-path</span>: <span class="fu">inset(</span><span class="dv">50</span><span class="dt">%</span><span class="fu">)</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>  <span class="kw">clip</span>: <span class="fu">rect(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="fu">)</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>  <span class="kw">height</span>: <span class="dv">1</span><span class="dt">px</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>  <span class="kw">margin</span>: <span class="dv">0</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>  <span class="kw">overflow</span>: <span class="dv">hidden</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>  <span class="kw">padding</span>: <span class="dv">0</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a>  <span class="kw">position</span>: <span class="dv">absolute</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a>  <span class="kw">white-space</span>: <span class="dv">nowrap</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a>  <span class="kw">width</span>: <span class="dv">1</span><span class="dt">px</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a>}</span></code></pre></div>
+<p>Something important to note is the usage of <code>1px</code>. I may be tempted to use <code>em</code> or <code>rem</code> or <code>ch</code> or <code>ex</code> or something clever, <em>but I should not do this</em>! Depending on the <code>font-size</code>, the browser, the monitor DPI, etc, something like <code>0.1em</code> can end up as a half pixel and be rounded down to <code>0</code>, thus making this inaccessible to screen readers! Use <code>1px</code>, I beg of my future self; it’s okay to use <code>px</code> for certain things.</p>
+<p>Yours,<br /> Robert W. Pearce</p>
+  </div>
+</main>
+<footer class="mb24">
+  <section class="ml20 mr20 m880-mla m880-mra mw120ch">
+    <h2 class="fs32 lh11">
+      If found, please return to…
+    </h2>
+    <div class="fs18 lh14">Robert W. Pearce</div>
+    
+    <div>
+      <a class="a bsu fs18 lh14 tdn" href="https://github.com/sponsors/rpearce">
+        Buy me a coffee
+      </a>
+    </div>
+    
+    
+    <div>
+      <a class="a bsu fs18 lh14 tdn" href="https://github.com/rpearce">
+        github.com/rpearce
+      </a>
+    </div>
+    
+    
+    <div>
+      <a class="a bsu fs18 lh14 tdn" href="https://twitter.com/RobertWPearce">
+        @RobertWPearce
+      </a>
+    </div>
+  </section>
+  <section class="ml20 mr20 m880-mla m880-mra mw120ch">
+    <h2 class="fs32 lh11">Read along</h2>
+    <nav>
+      <ul class="lsn mb24 p0" role="list">
+        <li class="di fs18" role="listitem">
+          <a class="a bsu fs18 lh14 tdn" href="./index.html">Home</a>
+        </li>
+        <li class="di fs18" role="listitem">
+          <a class="a bsu fs18 lh14 tdn" href="./rss.xml">RSS Feed</a>
+        </li>
+        <li class="di fs18" role="listitem">
+          <a class="a bsu fs18 lh14 tdn" href="./atom.xml">Atom Feed</a>
+        </li>
+        <li class="di fs18" role="listitem">
+          <a class="a bsu fs18 lh14 tdn" href="./sitemap.xml">Sitemap</a>
+        </li>
+      </ul>
+    </nav>
+  </section>
+</footer>
+
+
+    
+  </body>
+</html>

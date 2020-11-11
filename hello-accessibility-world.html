@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Hello, accessibility world!</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A programmer's first steps into a larger accessibility world">
+    
+    <meta name="author" content="Robert W. Pearce">
+    
+    
+    <meta name="keywords" content="button reset, css, accessibility, a11y, dear-dia11y">
+    
+    <meta name="google-site-verification" content="iwHC5sNm754gGlV0YuXSPOnSC1kJDcTDTMSthILfAL0" />
+
+    <meta property="og:site_name" content="Dear Dia11y">
+    <meta property="og:title" content="Hello, accessibility world!">
+    <meta property="og:url" content="https://dear-dia11y.com/hello-accessibility-world.html">
+    <meta property="og:description" content="A programmer's first steps into a larger accessibility world">
+    
+    
+    <meta property="og:type" content="article">
+    
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:site" content="Dear Dia11y">
+    <meta property="twitter:title" content="Hello, accessibility world!">
+    <meta property="twitter:description" content="A programmer's first steps into a larger accessibility world">
+    
+    
+    <meta property="twitter:creator" content="RobertWPearce">
+    
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>♿️</text></svg>">
+    <link rel="canonical" href="https://dear-dia11y.com/hello-accessibility-world.html">
+    <link rel="stylesheet" href="./css/default.css" />
+    
+  </head>
+  <body class="dark ha m0 wrbw">
+    <header class="ml20 mr20 mw120ch m880-mla m880-mra">
+  <h1 class="fs40 lh14">
+    <a aria-current="page" class="a bsu tdn" href="./hello-accessibility-world.html">Hello, accessibility world!</a>
+  </h1>
+  <div>
+    <small class="fwb fs18">2020-09-21</small>
+    
+  </div>
+</header>
+<main class="am ml20 mr20 m880-mla m880-mra mw120ch">
+  <div class="fs18 lh14">
+    <p>Dear dia11y,</p>
+<p>Today I started an accessibility blog!</p>
+<p>I normally write about functional programming, but I’ve been doing a <em>lot</em> of accessibility (a11y — a…11 letters…y) work this year, and I thought it would be a good idea to write down some of the useful things I’ve learned.</p>
+<p>Don’t worry; these will generally be short.</p>
+<p>For this first entry, I’d like to share about one of the most common things I come across: when to use <code>&lt;div&gt;</code>s versus <code>&lt;button&gt;</code>s versus <code>&lt;a&gt;</code>s for “clickable” elements.</p>
+<p>Unless I have a <em>very</em> good reason not to follow these rules, it’s very simple:</p>
+<ul>
+<li>use <code>&lt;a&gt;</code> if it changes the window’s location</li>
+<li>use <code>&lt;button&gt;</code> if I can press on it and something happens</li>
+<li>try to not use <code>&lt;div&gt;</code> as a trigger for anything</li>
+</ul>
+<p>If I’m concerned about the default browser styling of buttons, here are CSS styles collected from around the internet that will allow me to reset a button’s default styling.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">.btn-reset</span> {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  <span class="kw">-webkit-appearance</span>: <span class="dv">none</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>  <span class="kw">-moz-appearance</span>: <span class="dv">none</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>  <span class="kw">appearance</span>: <span class="dv">none</span><span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>  <span class="kw">background</span>: <span class="dv">none</span><span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>  <span class="kw">border-radius</span>: <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>  <span class="kw">border</span>: <span class="dv">none</span><span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>  <span class="kw">color</span>: <span class="bu">inherit</span><span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>  <span class="kw">font</span>: <span class="bu">inherit</span><span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>  <span class="kw">margin</span>: <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>  <span class="kw">padding</span>: <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>}</span></code></pre></div>
+<p>If I have to use <code>&lt;div&gt;</code>, make sure I remember to read <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role">MDN’s role=button page</a> and the <a href="https://www.w3.org/TR/wai-aria-practices-1.2/#button">WAI ARIA Practices 1.2 button specification</a> to figure out how to do it correctly. Most importantly, if I decide I’m going to try to reproduce native browser behavior that all manner of programs and devices rely on, <strong>make sure my team and I know how to test it and not break it in the future</strong>.</p>
+<p>I must confess that I’ve made and continue to make many a11y mistakes, but it’s in learning from our mistakes that we are able to grow.</p>
+<p>Yours,<br /> Robert W. Pearce</p>
+  </div>
+</main>
+<footer class="mb24">
+  <section class="ml20 mr20 m880-mla m880-mra mw120ch">
+    <h2 class="fs32 lh11">
+      If found, please return to…
+    </h2>
+    <div class="fs18 lh14">Robert W. Pearce</div>
+    
+    <div>
+      <a class="a bsu fs18 lh14 tdn" href="https://github.com/sponsors/rpearce">
+        Buy me a coffee
+      </a>
+    </div>
+    
+    
+    <div>
+      <a class="a bsu fs18 lh14 tdn" href="https://github.com/rpearce">
+        github.com/rpearce
+      </a>
+    </div>
+    
+    
+    <div>
+      <a class="a bsu fs18 lh14 tdn" href="https://twitter.com/RobertWPearce">
+        @RobertWPearce
+      </a>
+    </div>
+  </section>
+  <section class="ml20 mr20 m880-mla m880-mra mw120ch">
+    <h2 class="fs32 lh11">Read along</h2>
+    <nav>
+      <ul class="lsn mb24 p0" role="list">
+        <li class="di fs18" role="listitem">
+          <a class="a bsu fs18 lh14 tdn" href="./index.html">Home</a>
+        </li>
+        <li class="di fs18" role="listitem">
+          <a class="a bsu fs18 lh14 tdn" href="./rss.xml">RSS Feed</a>
+        </li>
+        <li class="di fs18" role="listitem">
+          <a class="a bsu fs18 lh14 tdn" href="./atom.xml">Atom Feed</a>
+        </li>
+        <li class="di fs18" role="listitem">
+          <a class="a bsu fs18 lh14 tdn" href="./sitemap.xml">Sitemap</a>
+        </li>
+      </ul>
+    </nav>
+  </section>
+</footer>
+
+
+    
+  </body>
+</html>

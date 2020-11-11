@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel>
+        <title>Dear Dia11y</title>
+        <link>https://dear-dia11y.com</link>
+        <description><![CDATA[Confessions of a programmer working on web accessibility]]></description>
+        <atom:link href="https://dear-dia11y.com/rss.xml" rel="self"
+                   type="application/rss+xml" />
+        <lastBuildDate>Wed, 21 Oct 2020 00:00:00 UT</lastBuildDate>
+        <item>
+    <title>Decorative &amp; functional images</title>
+    <link>https://dear-dia11y.com/decorative-and-functional-images.html</link>
+    <description><![CDATA[<p>Dear dia11y,</p>
+<p>There have been times in the past where I’ve used what I’ll momentarily call “helper images” like user avatars, button icons, and illustrations, and in trying to make them more accessible, I’ve given them alternative text like “user avatar” and “rubbish bin”. While I should almost always accurately describe and label images, there are times when it’s safe for me to mark images as <em>decorative</em> or provide a <em>functional</em> label instead of alternative text.</p>
+<p>For my future reference, the W3 website has a few good articles on these subjects:</p>
+<ul>
+<li><a href="https://www.w3.org/WAI/tutorials/images/decorative/">WAI Decorative Images</a></li>
+<li><a href="https://www.w3.org/WAI/tutorials/images/functional/">WAI Functional Images</a></li>
+<li><a href="https://www.w3.org/WAI/tutorials/images/tips/">WAI Images Tips &amp; Tricks</a></li>
+</ul>
+<p>I’m leaving myself some notes and examples on these subjects below.</p>
+<h2 id="decorative-images">Decorative images</h2>
+<p>If I have an image that doesn’t add any extra content to the page, I can probably assume that this image is <em>decorative</em>.</p>
+<p>A great example would be user avatars right next to user names (see example just below).</p>
+<p class="codepen" data-height="381" data-theme-id="dark" data-default-tab="html,result" data-user="rpearce" data-slug-hash="wvWzYbO" style="height: 381px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Decorative Images">
+  <span>See the Pen <a href="https://codepen.io/rpearce/pen/wvWzYbO">
+  Decorative Images</a> by Robert Pearce (<a href="https://codepen.io/rpearce">@rpearce</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<p>I probably shouldn’t label these images “avatar”, “user avatar” or even “avatar for ${userName}”, for labels like these don’t describe the content of the images and therefore likely cannot describe them in a way that adds valuable content to the document.</p>
+<p>If I have a list of users with their avatars and names but no explicit descriptions of their avatars, what is the point of announcing “avatar” for each user?</p>
+<p>Instead, I can provide an <code>alt</code> attribute of <code>""</code> to tell assistive technologies that I want to ignore this image.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">&lt;li</span> <span class="er">...</span><span class="kw">&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  <span class="kw">&lt;img</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="ot">    alt=</span><span class="st">&quot;&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="ot">    class=</span><span class="st">&quot;...&quot;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="ot">    height=</span><span class="st">&quot;60&quot;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="ot">    src=</span><span class="st">&quot;...&quot;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="ot">    width=</span><span class="st">&quot;60&quot;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>  <span class="kw">/&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>  <span class="kw">&lt;span&gt;</span>Robert W. Pearce<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="kw">&lt;/li&gt;</span></span></code></pre></div>
+<p>If this image is an SVG or any other type of decorative element that might get picked up by a screen reader, I can use <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-hidden_attribute"><code>aria-hidden="true"</code></a> to completely hide it from the screen reader, or I can use <a href="https://www.w3.org/TR/using-aria/#presentation"><code>role="presentation"</code></a> to effectively set <code>role="none"</code> and remove any existing semantics (I prefer the former approach).</p>
+<h2 id="functional-images">Functional images</h2>
+<p>There are times when I want to use images as visual aids to accompany actionable text like “Delete email”, or perhaps I only want to present an image, but I really intend for that image to mean “Delete email” — note to self: this is called a <em>functional image</em>.</p>
+<p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="html,result" data-user="rpearce" data-slug-hash="XWKjyJp" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Functional image">
+  <span>See the Pen <a href="https://codepen.io/rpearce/pen/XWKjyJp">
+  Functional image</a> by Robert Pearce (<a href="https://codepen.io/rpearce">@rpearce</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<p>Here is an HTML summary of the example above:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">&lt;button</span><span class="ot"> type=</span><span class="st">&quot;button&quot;</span> <span class="er">...</span><span class="kw">&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>  <span class="kw">&lt;svg</span><span class="ot"> aria-hidden=</span><span class="st">&quot;true&quot;</span> <span class="er">...</span><span class="kw">&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>    <span class="co">&lt;!-- ... --&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>  <span class="kw">&lt;/svg&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>  <span class="kw">&lt;span&gt;</span>Delete email<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="kw">&lt;/button&gt;</span></span></code></pre></div>
+<p>The only thing of note is that I have <code>aria-hidden="true"</code> on the <code>&lt;svg&gt;</code>.</p>
+<p>While it <em>could</em> be argued that narrating <code>"button, rubbish bin image, Delete email"</code> could give some added context, the image is intended as a visual aid, and labelling it seems to add a bit of noise, distracting from the simple point of what this does: <code>"button, Delete email"</code>.</p>
+<p>What if I want to only use the image, but I intend for it to mean <code>"Delete email"</code>?</p>
+<p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="html,result" data-user="rpearce" data-slug-hash="OJXRaZJ" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Functional image + label">
+  <span>See the Pen <a href="https://codepen.io/rpearce/pen/OJXRaZJ">
+  Functional image + label</a> by Robert Pearce (<a href="https://codepen.io/rpearce">@rpearce</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<p>Here is an HTML summary of the example above:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">&lt;button</span><span class="ot"> aria-label=</span><span class="st">&quot;Delete email&quot;</span><span class="ot"> type=</span><span class="st">&quot;button&quot;</span> <span class="er">...</span><span class="kw">&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>  <span class="kw">&lt;svg</span><span class="ot"> aria-hidden=</span><span class="st">&quot;true&quot;</span> <span class="er">...</span><span class="kw">&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>    <span class="co">&lt;!-- ... --&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>  <span class="kw">&lt;/svg&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="kw">&lt;/button&gt;</span></span></code></pre></div>
+<p>In addition to having <code>aria-hidden="true"</code> on the <code>&lt;svg&gt;</code>, instead of the text node being there, there is an <code>aria-label="Delete email"</code> on the surrounding <code>&lt;button&gt;</code> element. This button will also narrate, <code>"button, Delete email"</code>.</p>
+<hr />
+<p>That’s it for decorative and functional images for today!</p>
+<p>Yours,<br /> Robert W. Pearce</p>]]></description>
+    <pubDate>Wed, 21 Oct 2020 00:00:00 UT</pubDate>
+    <guid>https://dear-dia11y.com/decorative-and-functional-images.html</guid>
+    <dc:creator>Robert W. Pearce</dc:creator>
+</item>
+<item>
+    <title>Future-proof two types of visually hidden content</title>
+    <link>https://dear-dia11y.com/future-proof-two-types-of-visually-hidden-content.html</link>
+    <description><![CDATA[<p>Dear dia11y,</p>
+<p>I would prefer to not hide content from anyone, but there are times when I need to provide extra context and functionality when a design is not inclusive enough.</p>
+<p>The <a href="https://www.a11yproject.com/posts/2013-01-11-how-to-hide-content/"><code>.visually-hidden</code> “clip pattern” from The A11y Project</a> is excellent for hiding content that is intended for screen reader users, and it can be leveraged to provide interactive elements, like <code>&lt;button&gt;</code>s, that reveal themselves on focus for screen reader, keyboard, and other assistive device users alike. Here’s what that website’s recommendation is:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">.visually-hidden</span><span class="in">:not(</span>:focus<span class="in">):not(</span>:active<span class="in">)</span> {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  <span class="kw">clip</span>: <span class="fu">rect(</span><span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>  <span class="kw">clip-path</span>: <span class="fu">inset(</span><span class="dv">50</span><span class="dt">%</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>  <span class="kw">height</span>: <span class="dv">1</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>  <span class="kw">overflow</span>: <span class="dv">hidden</span><span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>  <span class="kw">position</span>: <span class="dv">absolute</span><span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>  <span class="kw">white-space</span>: <span class="dv">nowrap</span><span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>  <span class="kw">width</span>: <span class="dv">1</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>}</span></code></pre></div>
+<p>For most use cases, this is great. But my work in large codebases has shown me that if I want this to not take up any space, I need to get bossy and guard against future changes, as well.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="fu">.visually-hidden</span><span class="in">:not(</span>:focus<span class="in">):not(</span>:active<span class="in">)</span> {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>  <span class="kw">border</span>: <span class="dv">none</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>  <span class="kw">clip-path</span>: <span class="fu">inset(</span><span class="dv">50</span><span class="dt">%</span><span class="fu">)</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>  <span class="kw">clip</span>: <span class="fu">rect(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="fu">)</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>  <span class="kw">height</span>: <span class="dv">1</span><span class="dt">px</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>  <span class="kw">margin</span>: <span class="dv">0</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>  <span class="kw">overflow</span>: <span class="dv">hidden</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>  <span class="kw">padding</span>: <span class="dv">0</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>  <span class="kw">position</span>: <span class="dv">absolute</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>  <span class="kw">white-space</span>: <span class="dv">nowrap</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>  <span class="kw">width</span>: <span class="dv">1</span><span class="dt">px</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>}</span></code></pre></div>
+<p>While most things I do in my life aren’t important to anyone but me, getting visually hidden content right is <em>very</em> <code>!important</code>.</p>
+<p>With these additions we can ensure that we don’t break any existing designs.</p>
+<p>However, what if we transition from one page / view to another and need to call <code>element.focus()</code> on a visually hidden element in order to manage focus context? We might have something like this:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">&lt;h1</span><span class="ot"> class=</span><span class="st">&quot;visually-hidden&quot;</span><span class="ot"> tabindex=</span><span class="st">&quot;-1&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>  A necessary hidden h1 for whatever reason</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">&lt;/h1&gt;</span></span></code></pre></div>
+<p>If we call <code>.focus()</code> on that <code>&lt;h1&gt;</code>, the <code>:not(:focus)</code> part of the <code>.visually-hidden</code> definition will cause it to be <em>not</em> hidden!</p>
+<p>The <code>.visually-hidden</code> class is intended to be a catch-all to also account for links and buttons, and we definitely want to leverage that, but there are times where we <em>know</em> we will never want it to be focused, so we can be explicit about doing so by having an additional class, <code>.visually-hidden-always</code>, and reuse our code via a grouped selector.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="fu">.visually-hidden</span><span class="in">:not(</span>:focus<span class="in">):not(</span>:active<span class="in">)</span><span class="op">,</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="fu">.visually-hidden-always</span> {</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>  <span class="kw">border</span>: <span class="dv">none</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>  <span class="kw">clip-path</span>: <span class="fu">inset(</span><span class="dv">50</span><span class="dt">%</span><span class="fu">)</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>  <span class="kw">clip</span>: <span class="fu">rect(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="fu">)</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>  <span class="kw">height</span>: <span class="dv">1</span><span class="dt">px</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>  <span class="kw">margin</span>: <span class="dv">0</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>  <span class="kw">overflow</span>: <span class="dv">hidden</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>  <span class="kw">padding</span>: <span class="dv">0</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a>  <span class="kw">position</span>: <span class="dv">absolute</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a>  <span class="kw">white-space</span>: <span class="dv">nowrap</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a>  <span class="kw">width</span>: <span class="dv">1</span><span class="dt">px</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a>}</span></code></pre></div>
+<p>Something important to note is the usage of <code>1px</code>. I may be tempted to use <code>em</code> or <code>rem</code> or <code>ch</code> or <code>ex</code> or something clever, <em>but I should not do this</em>! Depending on the <code>font-size</code>, the browser, the monitor DPI, etc, something like <code>0.1em</code> can end up as a half pixel and be rounded down to <code>0</code>, thus making this inaccessible to screen readers! Use <code>1px</code>, I beg of my future self; it’s okay to use <code>px</code> for certain things.</p>
+<p>Yours,<br /> Robert W. Pearce</p>]]></description>
+    <pubDate>Tue, 29 Sep 2020 00:00:00 UT</pubDate>
+    <guid>https://dear-dia11y.com/future-proof-two-types-of-visually-hidden-content.html</guid>
+    <dc:creator>Robert W. Pearce</dc:creator>
+</item>
+<item>
+    <title>Figure &amp; Figcaption: Supporting IE11, JAWS, NVDA, &amp; VO</title>
+    <link>https://dear-dia11y.com/figure-and-figcaption-supporting-ie11-jaws-nvda-and-vo.html</link>
+    <description><![CDATA[<p>Dear dia11y,</p>
+<p>At work, I must support IE11 along with all the other major browsers, so that means I need to support <a href="https://www.freedomscientific.com/products/software/jaws/">JAWS</a> &amp; <a href="https://www.nvaccess.org/download/">NVDA</a> across these browsers on Windows in addition to VoiceOver on macOS &amp; iOS Safari (I don’t do much in the Android world at the moment).</p>
+<p>About 1-2 months ago, I did a lot of work fixing up issues around <code>&lt;figure&gt;</code>s and <code>&lt;figcaption&gt;</code>s. For a refresher, here’s <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figcaption">the example that MDN uses</a>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">&lt;figure&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  <span class="kw">&lt;img</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="ot">    alt=</span><span class="st">&quot;Elephant at sunset&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="ot">    src=</span><span class="st">&quot;/media/cc0-images/elephant-660-480.jpg&quot;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>  <span class="kw">/&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>  <span class="kw">&lt;figcaption&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>    An elephant at sunset</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>  <span class="kw">&lt;/figcaption&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="kw">&lt;/figure&gt;</span></span></code></pre></div>
+<p>This is straightforward, but JAWS + IE11 didn’t quite recognize this as a figure, and we had issues with the caption because we had a <code>&lt;div&gt;</code> as the parent of the <code>&lt;figcaption&gt;</code>. NVDA + Firefox didn’t like this setup, either. Here’s what our example was structured like:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">&lt;figure&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>  <span class="kw">&lt;img</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="ot">    alt=</span><span class="st">&quot;Elephant at sunset&quot;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="ot">    src=</span><span class="st">&quot;/media/cc0-images/elephant-660-480.jpg&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>  <span class="kw">/&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>  <span class="kw">&lt;div&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>    <span class="kw">&lt;figcaption&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>      An elephant at sunset</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>    <span class="kw">&lt;/figcaption&gt;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>  <span class="kw">&lt;/div&gt;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="kw">&lt;/figure&gt;</span></span></code></pre></div>
+<p>After going back and forth with different combinations of elements and attributes, here’s what was settled on to make this work across all these browsers and screen readers:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">&lt;figure</span><span class="ot"> aria-labelledby=</span><span class="st">&quot;caption-id&quot;</span><span class="ot"> role=</span><span class="st">&quot;figure&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>  <span class="kw">&lt;img</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="ot">    alt=</span><span class="st">&quot;Elephant at sunset&quot;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="ot">    src=</span><span class="st">&quot;/media/cc0-images/elephant-660-480.jpg&quot;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>  <span class="kw">/&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>  <span class="kw">&lt;figcaption</span><span class="ot"> id=</span><span class="st">&quot;caption-id&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>    An elephant at sunset</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>  <span class="kw">&lt;/figcaption&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="kw">&lt;/figure&gt;</span></span></code></pre></div>
+<p>Adding <code>role="figure"</code> to the <code>&lt;figure&gt;</code>, explicitly stating that it was labelled by the <code>&lt;figcaption&gt;</code>, and placing <code>&lt;figcaption&gt;</code> as an immediate child of <code>&lt;figure&gt;</code> resolved all our issues.</p>
+<p>This was a helpful table of related compatibility: <a href="https://www.powermapper.com/tests/screen-readers/labelling/img-figcaption/" class="uri">https://www.powermapper.com/tests/screen-readers/labelling/img-figcaption/</a></p>
+<p>Yours,<br /> Robert W. Pearce</p>]]></description>
+    <pubDate>Sun, 27 Sep 2020 00:00:00 UT</pubDate>
+    <guid>https://dear-dia11y.com/figure-and-figcaption-supporting-ie11-jaws-nvda-and-vo.html</guid>
+    <dc:creator>Robert W. Pearce</dc:creator>
+</item>
+<item>
+    <title>Image with SVG source VoiceOver bug</title>
+    <link>https://dear-dia11y.com/image-with-svg-source-voiceover-bug.html</link>
+    <description><![CDATA[<p>Dear dia11y,</p>
+<p>I recently documented an issue where some decorative illustration <code>&lt;img /&gt;</code> elements with SVG sources were, when using VoiceOver in macOS Safari, announcing every <code>&lt;g&gt;</code> (group) element by narrating the word “image”. Here’s what the HTML essentially was:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">&lt;img</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="ot">  alt=</span><span class="st">&quot;&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="ot">  class=</span><span class="st">&quot;foo&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="ot">  src=</span><span class="st">&quot;path/to/file.svg&quot;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">/&gt;</span></span></code></pre></div>
+<p>The <code>alt=""</code> should have alerted the screen reader that this was a <a href="https://www.w3.org/WAI/tutorials/images/decorative/">decorative image</a>, but no matter — let’s add <code>aria-hidden="true"</code> to it.</p>
+<p>I recommended this issue and possible fix to a colleague and forgot about it.</p>
+<p>This colleague read up on <code>role="presentation"</code> versus <code>aria-hidden="true"</code> and whatnot and eventually discovered that neither solved the problem! What a mystery.</p>
+<p>This person did some digging and discovered that <strong>image elements with SVG sources that aren’t marked as <code>role="img"</code> can have VoiceOver jump into the SVG document and start reading things</strong>.</p>
+<p>The fix?</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">&lt;img</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="ot">  alt=</span><span class="st">&quot;&quot;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="ot">  class=</span><span class="st">&quot;foo&quot;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="ot">  role=</span><span class="st">&quot;img&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="ot">  src=</span><span class="st">&quot;path/to/file.svg&quot;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="kw">/&gt;</span></span></code></pre></div>
+<p>That’s it! HTML and a11y linters will complain about the repetitive <code>role</code>, but we do what we have to do.</p>
+<p>It also turned out that this was a problem with non-decorative images. Image alternative text was being read along with the innards of SVG sources (even <code>&lt;text&gt;</code> elements!).</p>
+<p>Here are some nicely documented test cases of the issue:</p>
+<ul>
+<li><a href="http://pauljadam.com/demos/svg-role-img.html" class="uri">http://pauljadam.com/demos/svg-role-img.html</a></li>
+<li><a href="http://a11yideas.com/testcode/mwp/iOSsvg.html" class="uri">http://a11yideas.com/testcode/mwp/iOSsvg.html</a></li>
+</ul>
+<p>Yours,<br /> Robert W. Pearce</p>]]></description>
+    <pubDate>Sat, 26 Sep 2020 00:00:00 UT</pubDate>
+    <guid>https://dear-dia11y.com/image-with-svg-source-voiceover-bug.html</guid>
+    <dc:creator>Robert W. Pearce</dc:creator>
+</item>
+<item>
+    <title>Hello, accessibility world!</title>
+    <link>https://dear-dia11y.com/hello-accessibility-world.html</link>
+    <description><![CDATA[<p>Dear dia11y,</p>
+<p>Today I started an accessibility blog!</p>
+<p>I normally write about functional programming, but I’ve been doing a <em>lot</em> of accessibility (a11y — a…11 letters…y) work this year, and I thought it would be a good idea to write down some of the useful things I’ve learned.</p>
+<p>Don’t worry; these will generally be short.</p>
+<p>For this first entry, I’d like to share about one of the most common things I come across: when to use <code>&lt;div&gt;</code>s versus <code>&lt;button&gt;</code>s versus <code>&lt;a&gt;</code>s for “clickable” elements.</p>
+<p>Unless I have a <em>very</em> good reason not to follow these rules, it’s very simple:</p>
+<ul>
+<li>use <code>&lt;a&gt;</code> if it changes the window’s location</li>
+<li>use <code>&lt;button&gt;</code> if I can press on it and something happens</li>
+<li>try to not use <code>&lt;div&gt;</code> as a trigger for anything</li>
+</ul>
+<p>If I’m concerned about the default browser styling of buttons, here are CSS styles collected from around the internet that will allow me to reset a button’s default styling.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">.btn-reset</span> {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  <span class="kw">-webkit-appearance</span>: <span class="dv">none</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>  <span class="kw">-moz-appearance</span>: <span class="dv">none</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>  <span class="kw">appearance</span>: <span class="dv">none</span><span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>  <span class="kw">background</span>: <span class="dv">none</span><span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>  <span class="kw">border-radius</span>: <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>  <span class="kw">border</span>: <span class="dv">none</span><span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>  <span class="kw">color</span>: <span class="bu">inherit</span><span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>  <span class="kw">font</span>: <span class="bu">inherit</span><span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>  <span class="kw">margin</span>: <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>  <span class="kw">padding</span>: <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>}</span></code></pre></div>
+<p>If I have to use <code>&lt;div&gt;</code>, make sure I remember to read <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role">MDN’s role=button page</a> and the <a href="https://www.w3.org/TR/wai-aria-practices-1.2/#button">WAI ARIA Practices 1.2 button specification</a> to figure out how to do it correctly. Most importantly, if I decide I’m going to try to reproduce native browser behavior that all manner of programs and devices rely on, <strong>make sure my team and I know how to test it and not break it in the future</strong>.</p>
+<p>I must confess that I’ve made and continue to make many a11y mistakes, but it’s in learning from our mistakes that we are able to grow.</p>
+<p>Yours,<br /> Robert W. Pearce</p>]]></description>
+    <pubDate>Mon, 21 Sep 2020 00:00:00 UT</pubDate>
+    <guid>https://dear-dia11y.com/hello-accessibility-world.html</guid>
+    <dc:creator>Robert W. Pearce</dc:creator>
+</item>
+
+    </channel>
+</rss>
