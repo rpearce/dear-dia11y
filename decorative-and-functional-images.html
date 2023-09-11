@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Decorative & functional images</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="How to leverage decorative and functional images for clearer accessibility">
+    
+    <meta name="author" content="Robert W. Pearce">
+    
+    
+    <meta name="keywords" content="decorative image, functional image, aria-hidden, alt text, accessibility, a11y, dear-dia11y">
+    
+    <meta name="google-site-verification" content="iwHC5sNm754gGlV0YuXSPOnSC1kJDcTDTMSthILfAL0" />
+
+    <meta property="og:site_name" content="Dear Dia11y">
+    <meta property="og:title" content="Decorative & functional images">
+    <meta property="og:url" content="https://dear-dia11y.com/decorative-and-functional-images.html">
+    <meta property="og:description" content="How to leverage decorative and functional images for clearer accessibility">
+    
+    
+    <meta property="og:type" content="article">
+    
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:site" content="Dear Dia11y">
+    <meta property="twitter:title" content="Decorative & functional images">
+    <meta property="twitter:description" content="How to leverage decorative and functional images for clearer accessibility">
+    
+    
+    <meta property="twitter:creator" content="RobertWPearce">
+    
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>♿️</text></svg>">
+    <link rel="canonical" href="https://dear-dia11y.com/decorative-and-functional-images.html">
+    <link rel="stylesheet" href="./css/default.css" />
+    
+  </head>
+  <body class="dark ha m0 wrbw">
+    <header class="ml20 mr20 mw120ch m880-mla m880-mra">
+  <h1 class="fs40 lh14">
+    <a aria-current="page" class="a bsu tdn" href="./decorative-and-functional-images.html">Decorative & functional images</a>
+  </h1>
+  <div>
+    <small class="fwb fs18">2020-10-21</small>
+    
+  </div>
+</header>
+<main class="am ml20 mr20 m880-mla m880-mra mw120ch">
+  <div class="fs18 lh14">
+    <p>Dear dia11y,</p>
+<p>There have been times in the past where I’ve used what I’ll momentarily call “helper images” like user avatars, button icons, and illustrations, and in trying to make them more accessible, I’ve given them alternative text like “user avatar” and “rubbish bin”. While I should almost always accurately describe and label images, there are times when it’s safe for me to mark images as <em>decorative</em> or provide a <em>functional</em> label instead of alternative text.</p>
+<p>For my future reference, the W3 website has a few good articles on these subjects:</p>
+<ul>
+<li><a href="https://www.w3.org/WAI/tutorials/images/decorative/">WAI Decorative Images</a></li>
+<li><a href="https://www.w3.org/WAI/tutorials/images/functional/">WAI Functional Images</a></li>
+<li><a href="https://www.w3.org/WAI/tutorials/images/tips/">WAI Images Tips &amp; Tricks</a></li>
+</ul>
+<p>I’m leaving myself some notes and examples on these subjects below.</p>
+<h2 id="decorative-images">Decorative images</h2>
+<p>If I have an image that doesn’t add any extra content to the page, I can probably assume that this image is <em>decorative</em>.</p>
+<p>A great example would be user avatars right next to user names (see example just below).</p>
+<p class="codepen" data-height="381" data-theme-id="dark" data-default-tab="html,result" data-user="rpearce" data-slug-hash="wvWzYbO" style="height: 381px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Decorative Images">
+  <span>See the Pen <a href="https://codepen.io/rpearce/pen/wvWzYbO">
+  Decorative Images</a> by Robert Pearce (<a href="https://codepen.io/rpearce">@rpearce</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<p>I probably shouldn’t label these images “avatar”, “user avatar” or even “avatar for ${userName}”, for labels like these don’t describe the content of the images and therefore likely cannot describe them in a way that adds valuable content to the document.</p>
+<p>If I have a list of users with their avatars and names but no explicit descriptions of their avatars, what is the point of announcing “avatar” for each user?</p>
+<p>Instead, I can provide an <code>alt</code> attribute of <code>""</code> to tell assistive technologies that I want to ignore this image.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">&lt;li</span> <span class="er">...</span><span class="kw">&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  <span class="kw">&lt;img</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="ot">    alt=</span><span class="st">&quot;&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="ot">    class=</span><span class="st">&quot;...&quot;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="ot">    height=</span><span class="st">&quot;60&quot;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="ot">    src=</span><span class="st">&quot;...&quot;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="ot">    width=</span><span class="st">&quot;60&quot;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>  <span class="kw">/&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>  <span class="kw">&lt;span&gt;</span>Robert W. Pearce<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="kw">&lt;/li&gt;</span></span></code></pre></div>
+<p>If this image is an SVG or any other type of decorative element that might get picked up by a screen reader, I can use <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-hidden_attribute"><code>aria-hidden="true"</code></a> to completely hide it from the screen reader, or I can use <a href="https://www.w3.org/TR/using-aria/#presentation"><code>role="presentation"</code></a> to effectively set <code>role="none"</code> and remove any existing semantics (I prefer the former approach).</p>
+<h2 id="functional-images">Functional images</h2>
+<p>There are times when I want to use images as visual aids to accompany actionable text like “Delete email”, or perhaps I only want to present an image, but I really intend for that image to mean “Delete email” — note to self: this is called a <em>functional image</em>.</p>
+<p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="html,result" data-user="rpearce" data-slug-hash="XWKjyJp" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Functional image">
+  <span>See the Pen <a href="https://codepen.io/rpearce/pen/XWKjyJp">
+  Functional image</a> by Robert Pearce (<a href="https://codepen.io/rpearce">@rpearce</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<p>Here is an HTML summary of the example above:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">&lt;button</span><span class="ot"> type=</span><span class="st">&quot;button&quot;</span> <span class="er">...</span><span class="kw">&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>  <span class="kw">&lt;svg</span><span class="ot"> aria-hidden=</span><span class="st">&quot;true&quot;</span> <span class="er">...</span><span class="kw">&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>    <span class="co">&lt;!-- ... --&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>  <span class="kw">&lt;/svg&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>  <span class="kw">&lt;span&gt;</span>Delete email<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="kw">&lt;/button&gt;</span></span></code></pre></div>
+<p>The only thing of note is that I have <code>aria-hidden="true"</code> on the <code>&lt;svg&gt;</code>.</p>
+<p>While it <em>could</em> be argued that narrating <code>"button, rubbish bin image, Delete email"</code> could give some added context, the image is intended as a visual aid, and labelling it seems to add a bit of noise, distracting from the simple point of what this does: <code>"button, Delete email"</code>.</p>
+<p>What if I want to only use the image, but I intend for it to mean <code>"Delete email"</code>?</p>
+<p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="html,result" data-user="rpearce" data-slug-hash="OJXRaZJ" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Functional image + label">
+  <span>See the Pen <a href="https://codepen.io/rpearce/pen/OJXRaZJ">
+  Functional image + label</a> by Robert Pearce (<a href="https://codepen.io/rpearce">@rpearce</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<p>Here is an HTML summary of the example above:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">&lt;button</span><span class="ot"> aria-label=</span><span class="st">&quot;Delete email&quot;</span><span class="ot"> type=</span><span class="st">&quot;button&quot;</span> <span class="er">...</span><span class="kw">&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>  <span class="kw">&lt;svg</span><span class="ot"> aria-hidden=</span><span class="st">&quot;true&quot;</span> <span class="er">...</span><span class="kw">&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>    <span class="co">&lt;!-- ... --&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>  <span class="kw">&lt;/svg&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="kw">&lt;/button&gt;</span></span></code></pre></div>
+<p>In addition to having <code>aria-hidden="true"</code> on the <code>&lt;svg&gt;</code>, instead of the text node being there, there is an <code>aria-label="Delete email"</code> on the surrounding <code>&lt;button&gt;</code> element. This button will also narrate, <code>"button, Delete email"</code>.</p>
+<hr />
+<p>That’s it for decorative and functional images for today!</p>
+<p>Yours,<br /> Robert W. Pearce</p>
+  </div>
+</main>
+<footer class="mb24">
+  <section class="ml20 mr20 m880-mla m880-mra mw120ch">
+    <h2 class="fs32 lh11">
+      If found, please return to…
+    </h2>
+    <div class="fs18 lh14">Robert W. Pearce</div>
+    
+    <div>
+      <a class="a bsu fs18 lh14 tdn" href="https://github.com/sponsors/rpearce">
+        Buy me a coffee
+      </a>
+    </div>
+    
+    
+    <div>
+      <a class="a bsu fs18 lh14 tdn" href="https://github.com/rpearce">
+        github.com/rpearce
+      </a>
+    </div>
+    
+    
+    <div>
+      <a class="a bsu fs18 lh14 tdn" href="https://twitter.com/RobertWPearce">
+        @RobertWPearce
+      </a>
+    </div>
+  </section>
+  <section class="ml20 mr20 m880-mla m880-mra mw120ch">
+    <h2 class="fs32 lh11">Read along</h2>
+    <nav>
+      <ul class="lsn mb24 p0" role="list">
+        <li class="di fs18" role="listitem">
+          <a class="a bsu fs18 lh14 tdn" href="./index.html">Home</a>
+        </li>
+        <li class="di fs18" role="listitem">
+          <a class="a bsu fs18 lh14 tdn" href="./rss.xml">RSS Feed</a>
+        </li>
+        <li class="di fs18" role="listitem">
+          <a class="a bsu fs18 lh14 tdn" href="./atom.xml">Atom Feed</a>
+        </li>
+        <li class="di fs18" role="listitem">
+          <a class="a bsu fs18 lh14 tdn" href="./sitemap.xml">Sitemap</a>
+        </li>
+      </ul>
+    </nav>
+  </section>
+</footer>
+
+
+    
+  </body>
+</html>

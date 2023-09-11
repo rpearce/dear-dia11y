@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Image with SVG source VoiceOver bug</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Resolving an image-with-SVG-source issue in Safari using VoiceOver">
+    
+    <meta name="author" content="Robert W. Pearce">
+    
+    
+    <meta name="keywords" content="SVG, VoiceOver, img src, accessibility, a11y, dear-dia11y">
+    
+    <meta name="google-site-verification" content="iwHC5sNm754gGlV0YuXSPOnSC1kJDcTDTMSthILfAL0" />
+
+    <meta property="og:site_name" content="Dear Dia11y">
+    <meta property="og:title" content="Image with SVG source VoiceOver bug">
+    <meta property="og:url" content="https://dear-dia11y.com/image-with-svg-source-voiceover-bug.html">
+    <meta property="og:description" content="Resolving an image-with-SVG-source issue in Safari using VoiceOver">
+    
+    
+    <meta property="og:type" content="article">
+    
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:site" content="Dear Dia11y">
+    <meta property="twitter:title" content="Image with SVG source VoiceOver bug">
+    <meta property="twitter:description" content="Resolving an image-with-SVG-source issue in Safari using VoiceOver">
+    
+    
+    <meta property="twitter:creator" content="RobertWPearce">
+    
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>♿️</text></svg>">
+    <link rel="canonical" href="https://dear-dia11y.com/image-with-svg-source-voiceover-bug.html">
+    <link rel="stylesheet" href="./css/default.css" />
+    
+  </head>
+  <body class="dark ha m0 wrbw">
+    <header class="ml20 mr20 mw120ch m880-mla m880-mra">
+  <h1 class="fs40 lh14">
+    <a aria-current="page" class="a bsu tdn" href="./image-with-svg-source-voiceover-bug.html">Image with SVG source VoiceOver bug</a>
+  </h1>
+  <div>
+    <small class="fwb fs18">2020-09-26</small>
+    
+  </div>
+</header>
+<main class="am ml20 mr20 m880-mla m880-mra mw120ch">
+  <div class="fs18 lh14">
+    <p>Dear dia11y,</p>
+<p>I recently documented an issue where some decorative illustration <code>&lt;img /&gt;</code> elements with SVG sources were, when using VoiceOver in macOS Safari, announcing every <code>&lt;g&gt;</code> (group) element by narrating the word “image”. Here’s what the HTML essentially was:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">&lt;img</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="ot">  alt=</span><span class="st">&quot;&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="ot">  class=</span><span class="st">&quot;foo&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="ot">  src=</span><span class="st">&quot;path/to/file.svg&quot;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">/&gt;</span></span></code></pre></div>
+<p>The <code>alt=""</code> should have alerted the screen reader that this was a <a href="https://www.w3.org/WAI/tutorials/images/decorative/">decorative image</a>, but no matter — let’s add <code>aria-hidden="true"</code> to it.</p>
+<p>I recommended this issue and possible fix to a colleague and forgot about it.</p>
+<p>This colleague read up on <code>role="presentation"</code> versus <code>aria-hidden="true"</code> and whatnot and eventually discovered that neither solved the problem! What a mystery.</p>
+<p>This person did some digging and discovered that <strong>image elements with SVG sources that aren’t marked as <code>role="img"</code> can have VoiceOver jump into the SVG document and start reading things</strong>.</p>
+<p>The fix?</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">&lt;img</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="ot">  alt=</span><span class="st">&quot;&quot;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="ot">  class=</span><span class="st">&quot;foo&quot;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="ot">  role=</span><span class="st">&quot;img&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="ot">  src=</span><span class="st">&quot;path/to/file.svg&quot;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="kw">/&gt;</span></span></code></pre></div>
+<p>That’s it! HTML and a11y linters will complain about the repetitive <code>role</code>, but we do what we have to do.</p>
+<p>It also turned out that this was a problem with non-decorative images. Image alternative text was being read along with the innards of SVG sources (even <code>&lt;text&gt;</code> elements!).</p>
+<p>Here are some nicely documented test cases of the issue:</p>
+<ul>
+<li><a href="http://pauljadam.com/demos/svg-role-img.html" class="uri">http://pauljadam.com/demos/svg-role-img.html</a></li>
+<li><a href="http://a11yideas.com/testcode/mwp/iOSsvg.html" class="uri">http://a11yideas.com/testcode/mwp/iOSsvg.html</a></li>
+</ul>
+<p>Yours,<br /> Robert W. Pearce</p>
+  </div>
+</main>
+<footer class="mb24">
+  <section class="ml20 mr20 m880-mla m880-mra mw120ch">
+    <h2 class="fs32 lh11">
+      If found, please return to…
+    </h2>
+    <div class="fs18 lh14">Robert W. Pearce</div>
+    
+    <div>
+      <a class="a bsu fs18 lh14 tdn" href="https://github.com/sponsors/rpearce">
+        Buy me a coffee
+      </a>
+    </div>
+    
+    
+    <div>
+      <a class="a bsu fs18 lh14 tdn" href="https://github.com/rpearce">
+        github.com/rpearce
+      </a>
+    </div>
+    
+    
+    <div>
+      <a class="a bsu fs18 lh14 tdn" href="https://twitter.com/RobertWPearce">
+        @RobertWPearce
+      </a>
+    </div>
+  </section>
+  <section class="ml20 mr20 m880-mla m880-mra mw120ch">
+    <h2 class="fs32 lh11">Read along</h2>
+    <nav>
+      <ul class="lsn mb24 p0" role="list">
+        <li class="di fs18" role="listitem">
+          <a class="a bsu fs18 lh14 tdn" href="./index.html">Home</a>
+        </li>
+        <li class="di fs18" role="listitem">
+          <a class="a bsu fs18 lh14 tdn" href="./rss.xml">RSS Feed</a>
+        </li>
+        <li class="di fs18" role="listitem">
+          <a class="a bsu fs18 lh14 tdn" href="./atom.xml">Atom Feed</a>
+        </li>
+        <li class="di fs18" role="listitem">
+          <a class="a bsu fs18 lh14 tdn" href="./sitemap.xml">Sitemap</a>
+        </li>
+      </ul>
+    </nav>
+  </section>
+</footer>
+
+
+    
+  </body>
+</html>
